@@ -21,6 +21,25 @@ class App extends Component {
     };
   }
 
+   onChange = (e) => {
+    const value = e.target.value
+
+    switch(value) {
+        case "ascending":
+            setDisplayPage(displayPage.sort((a, b) => a.label.localeCompare(b.label)))
+            break
+        case "descending":
+            setDisplayPage(displayPage.sort((a, b) => b.label.localeCompare(a.label)))
+            break
+        case "high-price":
+            setDisplayPage(displayPage.sort((a, b) => b.price - a.price))
+            break
+        case "low-price":
+             setDisplayPage(displayPage.sort((a, b) => a.price - b.price))
+            break
+    }
+}
+
   filterData(filterPrice, filterAlpha) {
     let filteredData = data;
     if (filterPrice) {
