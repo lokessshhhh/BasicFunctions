@@ -94,3 +94,132 @@ class MyComponent extends Component {
               ) : (
                 <View>
                   <Text>{
+
+
+
+
+
+
+/// Second method 
+
+import React, { Component } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
+
+export default class TodoList extends Component {
+  state = {
+    newTodo: '',
+    todos: [],
+  };
+
+  async componentDidMount() {
+    try {
+      const todos = await AsyncStorage.getItem('todos');
+      if (todos !== null) {
+        this.setState({ todos: JSON.parse(todos) });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  addTodo = async () => {
+    const { newTodo, todos } = this.state;
+    if (newTodo !== '') {
+      const updatedTodos = [...todos, { text: newTodo, completed: false }];
+      try {
+        await AsyncStorage.setItem('todos', JSON.stringify(updatedTodos));
+        this.setState({ todos: updatedTodos, newTodo: '' });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  completeTodo = async (index) => {
+    const { todos } = this.state;
+    const updatedTodos = [...todos];
+    updatedTodos[index].completed = !updatedTodos[index].completed;
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(updatedTodos));
+      this.setState({ todos: updatedTodos });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  removeTodo = async (index) => {
+    const { todos } = this.state;
+    const updatedTodos = [...todos];
+    updatedTodos.splice(index, 1);
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(updatedTodos));
+      this.setState({ todos: updatedTodos });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  render() {
+    const { newTodo, todos } = this.state;
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="New Todo"
+          value={newTodo}
+          onChangeText={(text) => this.setState({ newTodo: text })}
+        />
+        <TouchableOpacity style={styles.button} onPress={this.addTodo}>
+          <Text style={styles.buttonText}>Add Todo</Text>
+        </TouchableOpacity>
+        <View style={styles.todos}>
+          {todos.map((todo, index) => (
+            <TouchableOpacity key={index} style={styles.todo} onPress={() => this.completeTodo(index)}>
+              <Text style={[styles.todoText, todo.completed && styles.completed]}>{todo.text}</Text>
+              <TouchableOpacity style={styles.remove} onPress={() => this.removeTodo(index)}>
+                <Text style={styles.removeText}>X</Text>
+              </TouchableOpacity>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+  input: {
+    height: 50,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  button: {
+    height: 50,
+    width: '100%',
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: '#fff',
+  },
+  todos: {
+    width: '100%',
+  },
+  todo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderWidth:
+
