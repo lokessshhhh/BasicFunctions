@@ -1,0 +1,47 @@
+{
+  "splashheader":"Bienvenido a",
+  "appname": "Taxival",
+  "letsstart":"empecemos",
+  "login":"Iniciar Sesión",
+  "withmobnum":"Entrar con número de móvil",
+  "withemail":"Ingresar con Correo Electrónico",
+  "continue":" Continuar",
+  "noacc":"¿No tienes cuenta?",
+  "register":"Registrate.",
+  "initialpolicy":"Al continuar, aceptas la ",
+  "privacyPolicy":"Política de Privacidad",
+  "initialTerms":"Y el Taxival",
+  "terms":" Condiciones de uso.",
+  "verifyCode":"Código de verificación",
+  "verification":"Verificación",
+  "sentto":"Te lo hemos enviado al ",
+  "verify":"Verificar",
+  "notrecieved":"¿No recibes el código de verificación? ",
+  "resend":"Reenviar",
+  "registration":"Registro",
+  "createacc":"Crear cuenta",
+  "username":"Nombre de usuario",
+  "phoneNum":"Número de teléfono",
+  "email":"Email",
+  "password":"Contraseña",
+  "newPass":"Nueva contraseña",
+  "confnewPass":"Confirmar nueva contraseña",
+  "confpassword":"Confirmar contraseña",
+  "alreadyacc":"¿Tienes una cuenta? ",
+  "forgetPass":"Olvidé mi contraseña",
+  "sendverifyCode":"Le enviaremos un código de verificación en su ID de correo electrónico registrado.",
+  "sendPass":"Enviar contraseña",
+  "entercode":"Ingresa el código que recibiste en tu e-mail",
+  "resetpass":"Restablecer la contraseña",
+  "loginwithNum":"Iniciar sesión con número de teléfono móvil",
+  "loginwithEmail":"Iniciar sesión con correo electrónico"
+
+
+
+
+
+
+
+
+
+}

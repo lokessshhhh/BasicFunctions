@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/Fonts/HindGuntur-Bold.ttf",
+      "sha1": "7670efc7a3d4956552a60ba5113a4252cd8738f0"
+    },
+    {
+      "path": "src/assets/Fonts/HindGuntur-Light.ttf",
+      "sha1": "ce3776a3e9dc6b726626baa109bb130652354e1a"
+    },
+    {
+      "path": "src/assets/Fonts/HindGuntur-Medium.ttf",
+      "sha1": "3d3cb9ef2fb7cbaf3efc1f3fddaae3afc3a84f00"
+    },
+    {
+      "path": "src/assets/Fonts/HindGuntur-Regular.ttf",
+      "sha1": "24d582aa7f2831b6b1f21de154c9efa9ff080c80"
+    },
+    {
+      "path": "src/assets/Fonts/HindGuntur-Semibold.ttf",
+      "sha1": "bb4d3e17dcdbb6c1c12be99f43edef633b7a209e"
+    }
+  ]
+}
