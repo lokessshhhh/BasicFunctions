@@ -159,6 +159,20 @@ export default class TodoList extends Component {
     }
   };
 
+
+  updateTodo = async (index, text) => {
+    const { todos } = this.state;
+    const updatedTodos = [...todos];
+    updatedTodos[index].text = text;
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(updatedTodos));
+      this.setState({ todos: updatedTodos });
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(todos);
+  };
+
   render() {
     const { newTodo, todos } = this.state;
     return (
