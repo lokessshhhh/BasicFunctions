@@ -236,4 +236,58 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderWidth:
+    
+    
+    
+    
+    
+    
+    
+    export const getVehiclesData = async (Key, filter = '', type) => {
+
+  const keyValue = Key !== '' ? `'${Key}'` : '';
+
+  const filterString = filter !== '' ? `${filter}` : "";
+
+  const filterData = type === 'Certified' ? `Certified=true AND Type=${keyValue} AND ${filterString}` : type === 'Special' ? Key === 'NEW' || Key === 'USED' ? `isspecial=true AND Type=${keyValue} AND ${filterString}` : `isspecial=true AND ${filterString}` : `Type=${keyValue} AND ${filterString}`
+
+  const RooftopCollection = 'metrohonda';
+  const FieldList = 'VIN,type,stock,year,make,model,extcolor, extcolorgeneric,extcolor_code ,type,make,trim,sellingprice,imagelist,chromemultiviewext1url,hnilotid,vehicletitle,standardbody,miles';
+  const InventoryFilter = filterData;
+  const token = '3f051f8c-348d-440e-9d6a-8c9364544ce1'
+
+  const myPromise = new Promise((resolve, reject) => {
+    fetch(BASE_URL + `LoadCompressedVehicles?IntegrationToken=${token}&RooftopCollection=${RooftopCollection}&FieldList=${FieldList}&InventoryFilter=${InventoryFilter}&type=${keyValue}&UpdatedSinceDate=''`, 'GET')
+      .then((res) => {
+        return res.text()
+      }).then(async (results) => {
+        xml2js.parseStringPromise(results, { trim: true }).then(async function (result) {
+          const MyNewData = result?.CompressedInventoryResults?.CompressedVehicles?.toString()?.replace(/\"/gi, '"');
+          const jsonResult = await convert.xml2json(MyNewData); // convert xml to json
+          const data = JSON.parse(jsonResult);
+          const finalData = [];
+          data?.elements[0]?.elements[0]?.elements[0]?.elements[0]?.elements?.map(d => {
+            const fields = Object?.values(data?.elements[0]?.attributes);
+            const val = Object?.keys(data?.elements[0]?.attributes);
+            let valueD = {};
+            fields?.map((f, i) => {
+              valueD = { ...valueD, [`${f}`]: d?.attributes[val[i]] }
+            });
+            finalData?.push(valueD);
+          })
+          resolve(finalData);
+        }).catch(function (err) {
+          console.log('err :: ', err);
+          reject(err);
+        });
+      }).catch((err) => {
+        console.log("getVehiclesData err", err);
+      })
+  });
+
+  return myPromise.then((data) => {
+    return data;
+  })
+};
+
 
